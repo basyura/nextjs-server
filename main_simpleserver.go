@@ -10,7 +10,7 @@ import (
 
 func main() {
 	e := echo.New()
-	e.Static("/", "static")
+	e.Static("/", "public")
 	e.HTTPErrorHandler = notfoundHandler(e)
 	go e.Logger.Fatal(e.Start(":1325"))
 }
@@ -23,11 +23,11 @@ func notfoundHandler(e *echo.Echo) func(error, echo.Context) {
 			return
 		}
 		// read .html
-		if er := tryRead(c, http.StatusOK, "static", c.Request().URL.Path+".html"); er == nil {
+		if er := tryRead(c, http.StatusOK, "public", c.Request().URL.Path+".html"); er == nil {
 			return
 		}
 		// 404.html
-		if er := tryRead(c, http.StatusNotFound, "static", "404.html"); er == nil {
+		if er := tryRead(c, http.StatusNotFound, "public", "404.html"); er == nil {
 			return
 		}
 

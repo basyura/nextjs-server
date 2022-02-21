@@ -2,7 +2,7 @@
 
 ## deploy
 
-```
+```sh
 $ npx create-next-app helloworld
 $ cd helloworld
 $ npm i
